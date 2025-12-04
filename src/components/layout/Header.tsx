@@ -1,42 +1,87 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+
+const navLinks = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/bhajans", label: "Bhajans" },
+  { to: "/concerts", label: "Concerts" },
+  { to: "/contact", label: "Contact" },
+];
 
 const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        <Link to="/" className="flex items-center gap-2">
+        {/* Logo */}
+        <Link to="/" className="flex items-center gap-2 group">
+          <span className="text-2xl text-gold group-hover:scale-110 transition-transform">ॐ</span>
           <span className="font-heading text-2xl font-bold text-gradient-devotional">
             Sachin-Jatin
           </span>
         </Link>
         
-        <nav className="hidden md:flex items-center gap-6">
-          <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Home
-          </Link>
-          <Link to="/about" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            About
-          </Link>
-          <Link to="/bhajans" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Bhajans
-          </Link>
-          <Link to="/concerts" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Concerts
-          </Link>
-          <Link to="/contact" className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors">
-            Contact
-          </Link>
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className={cn(
+                "px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200",
+                location.pathname === link.to
+                  ? "text-saffron bg-saffron/10"
+                  : "text-foreground/70 hover:text-saffron hover:bg-saffron/5"
+              )}
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
         
-        {/* Mobile menu button - to be implemented */}
-        <button className="md:hidden p-2 text-foreground">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
+        {/* Mobile Menu Button */}
+        <Button
+          variant="ghost"
+          size="icon"
+          className="md:hidden"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? (
+            <X className="w-6 h-6" />
+          ) : (
+            <Menu className="w-6 h-6" />
+          )}
+        </Button>
       </div>
+      
+      {/* Mobile Navigation */}
+      {isMenuOpen && (
+        <div className="md:hidden border-t border-border/40 bg-background/95 backdrop-blur animate-fade-in">
+          <nav className="container py-4 flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setIsMenuOpen(false)}
+                className={cn(
+                  "px-4 py-3 text-base font-medium rounded-lg transition-all duration-200",
+                  location.pathname === link.to
+                    ? "text-saffron bg-saffron/10"
+                    : "text-foreground/70 hover:text-saffron hover:bg-saffron/5"
+                )}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };
