@@ -1,50 +1,184 @@
+import { Link } from "react-router-dom";
 import Layout from "@/components/layout/Layout";
+import HeroBanner from "@/components/HeroBanner";
+import SectionHeading from "@/components/SectionHeading";
+import BhajanCard from "@/components/BhajanCard";
+import { bhajans } from "@/data/bhajans";
+import { Button } from "@/components/ui/button";
+import { Play, Music, Mic, Users, ArrowRight } from "lucide-react";
 
 const Index = () => {
+  // Featured bhajans (first 4)
+  const featuredBhajans = bhajans.slice(0, 4);
+
   return (
     <Layout>
-      <section className="container py-20">
-        <div className="text-center space-y-6 animate-fade-in-up">
-          <h1 className="font-heading text-5xl md:text-7xl font-bold text-gradient-devotional">
-            Sachin-Jatin
-          </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Spreading Divine Music Through Devotion
-          </p>
-          <div className="flex flex-wrap justify-center gap-4 pt-6">
-            <a 
-              href="/bhajans" 
-              className="px-8 py-3 bg-gradient-devotional text-primary-foreground rounded-lg font-medium hover:shadow-glow transition-all duration-300"
-            >
-              Listen to Bhajans
-            </a>
-            <a 
-              href="/contact" 
-              className="px-8 py-3 border-2 border-primary text-primary rounded-lg font-medium hover:bg-primary hover:text-primary-foreground transition-all duration-300"
-            >
-              Contact Us
-            </a>
+      {/* Hero Banner */}
+      <HeroBanner />
+
+      {/* Featured Bhajans Section */}
+      <section className="py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-card/30 to-transparent" />
+        
+        <div className="container relative z-10">
+          <SectionHeading 
+            title="Featured Bhajans"
+            subtitle="Listen to our most beloved devotional songs"
+          />
+          
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {featuredBhajans.map((bhajan, index) => (
+              <div 
+                key={bhajan.id} 
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <BhajanCard track={bhajan} />
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-10 text-center">
+            <Button asChild variant="outline" size="lg" className="border-gold/50 hover:bg-gold/10">
+              <Link to="/bhajans" className="flex items-center gap-2">
+                <Music className="w-5 h-5" />
+                View All Bhajans
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
-      
-      {/* Placeholder sections - to be built */}
-      <section className="container py-16 border-t border-border">
-        <h2 className="font-heading text-3xl font-semibold text-center mb-8">
-          Featured Bhajans
-        </h2>
-        <p className="text-center text-muted-foreground">
-          Coming soon...
-        </p>
+
+      {/* Divider */}
+      <div className="section-divider" />
+
+      {/* Music Production Services */}
+      <section className="py-16 bg-gradient-to-r from-saffron/5 via-gold/5 to-maroon/5">
+        <div className="container">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="animate-fade-in-up">
+              <span className="inline-block px-4 py-1 bg-gold/10 text-gold rounded-full text-sm font-medium mb-4">
+                For Artists
+              </span>
+              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Music Production Services
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-6">
+                Are you a singer looking to create your own devotional music? We offer professional 
+                music production services for bhajans, aartis, and spiritual albums. Our team brings 
+                decades of experience in creating soul-stirring devotional compositions.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Professional studio recording",
+                  "Custom composition & arrangement",
+                  "Traditional & contemporary fusion",
+                  "Full album production",
+                ].map((item, i) => (
+                  <li key={i} className="flex items-center gap-3 text-foreground">
+                    <span className="w-2 h-2 rounded-full bg-gold" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <Button asChild className="bg-gradient-devotional hover:shadow-glow transition-all">
+                <Link to="/contact" className="flex items-center gap-2">
+                  <Mic className="w-5 h-5" />
+                  Discuss Your Project
+                </Link>
+              </Button>
+            </div>
+            
+            <div className="relative animate-scale-in">
+              <div className="aspect-square rounded-2xl bg-gradient-to-br from-saffron/10 to-maroon/10 flex items-center justify-center">
+                <div className="text-center">
+                  <span className="text-8xl opacity-40">🎙️</span>
+                  <p className="mt-4 text-muted-foreground">Production Studio</p>
+                </div>
+              </div>
+              <div className="absolute -top-4 -right-4 w-20 h-20 bg-gold/20 rounded-full blur-2xl" />
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-saffron/20 rounded-full blur-3xl" />
+            </div>
+          </div>
+        </div>
       </section>
-      
-      <section className="container py-16 border-t border-border">
-        <h2 className="font-heading text-3xl font-semibold text-center mb-8">
-          Music Production Services
-        </h2>
-        <p className="text-center text-muted-foreground max-w-2xl mx-auto">
-          We also produce devotional music for other singers. Contact us to collaborate on your next spiritual project.
-        </p>
+
+      {/* Divider */}
+      <div className="section-divider" />
+
+      {/* Quick Links / About Preview */}
+      <section className="py-16">
+        <div className="container">
+          <SectionHeading 
+            title="Our Journey"
+            subtitle="Two souls united by devotion, spreading divine melodies"
+          />
+          
+          <div className="mt-10 grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: Music,
+                title: "200+ Bhajans",
+                description: "A vast collection of devotional songs spanning various traditions and deities.",
+                link: "/bhajans",
+                linkText: "Listen Now",
+              },
+              {
+                icon: Users,
+                title: "500+ Concerts",
+                description: "Performed at temples, festivals, and spiritual gatherings across India.",
+                link: "/concerts",
+                linkText: "View History",
+              },
+              {
+                icon: Play,
+                title: "15+ Years",
+                description: "Dedicated to the art of devotional music and spreading spiritual harmony.",
+                link: "/about",
+                linkText: "Our Story",
+              },
+            ].map((item, index) => (
+              <Link
+                key={index}
+                to={item.link}
+                className="group p-6 bg-card/60 rounded-xl border border-border/50 hover:border-gold/30 transition-all duration-300 animate-fade-in-up card-hover"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <item.icon className="w-10 h-10 text-saffron mb-4 group-hover:scale-110 transition-transform" />
+                <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
+                  {item.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4">
+                  {item.description}
+                </p>
+                <span className="inline-flex items-center gap-1 text-gold text-sm font-medium group-hover:gap-2 transition-all">
+                  {item.linkText}
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 bg-card/50">
+        <div className="container">
+          <div className="max-w-2xl mx-auto text-center animate-fade-in">
+            <span className="text-4xl mb-4 block">🙏</span>
+            <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Connect With Us
+            </h2>
+            <p className="text-muted-foreground mb-8">
+              Whether you want to book us for a kirtan, collaborate on music production, 
+              or simply share your experience with our bhajans — we'd love to hear from you.
+            </p>
+            <Button asChild size="lg" className="bg-gradient-devotional hover:shadow-glow transition-all">
+              <Link to="/contact">Get in Touch</Link>
+            </Button>
+          </div>
+        </div>
       </section>
     </Layout>
   );
