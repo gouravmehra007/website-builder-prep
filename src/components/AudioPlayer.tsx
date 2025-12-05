@@ -1,9 +1,10 @@
 import { useRef, useEffect, useState } from "react";
-import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX } from "lucide-react";
+import { Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { useAudioStore } from "@/stores/audioStore";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 const AudioPlayer = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -79,6 +80,25 @@ const AudioPlayer = () => {
     const mins = Math.floor(time / 60);
     const secs = Math.floor(time % 60);
     return `${mins}:${secs.toString().padStart(2, "0")}`;
+  };
+
+  const handleDownload = async () => {
+    if (!currentTrack) return;
+    try {
+      const response = await fetch(currentTrack.file);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${currentTrack.title} - Sachin-Jatin.mp3`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      toast.success(`Downloading "${currentTrack.title}"`);
+    } catch (error) {
+      toast.error("Download failed. Please try again.");
+    }
   };
   
   // Don't render if no track
@@ -206,6 +226,17 @@ const AudioPlayer = () => {
               className="w-24"
             />
           </div>
+
+          {/* Download Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleDownload}
+            className="hover:text-saffron"
+            title="Download current bhajan"
+          >
+            <Download className="w-5 h-5" />
+          </Button>
         </div>
       </div>
     </div>
