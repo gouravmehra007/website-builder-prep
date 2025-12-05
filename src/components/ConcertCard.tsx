@@ -1,5 +1,6 @@
 import { Calendar, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 
 export interface Concert {
   id: string;
@@ -52,7 +53,7 @@ const ConcertCard = ({ concert, className }: ConcertCardProps) => {
         <div className="mt-3 space-y-2">
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Calendar className="w-4 h-4 text-gold" />
-            <span>{concert.date}</span>
+            <span>{format(new Date(concert.date), "MMMM d, yyyy")}</span>
           </div>
           
           <div className="flex items-center gap-2 text-sm text-muted-foreground">

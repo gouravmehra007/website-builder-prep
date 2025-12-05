@@ -7,6 +7,7 @@ export interface Track {
   thumbnail?: string;
   artist?: string;
   duration?: number;
+  category?: string;
 }
 
 interface AudioState {

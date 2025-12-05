@@ -1,6 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import SectionHeading from "@/components/SectionHeading";
 import { Heart, Music, Users, Star } from "lucide-react";
+import aboutDuoImg from "@/assets/about-duo.jpg";
 
 const About = () => {
   return (
@@ -36,16 +37,21 @@ const About = () => {
               <div className="space-y-4 text-muted-foreground leading-relaxed">
                 <p>
                   Sachin and Jatin, two brothers bound not just by blood but by an unwavering devotion to the divine, 
-                  began their musical journey in the sacred lanes of Vrindavan. Growing up in a family where morning 
-                  prayers were accompanied by harmonium and tabla, music became their language of worship.
+                  began their musical journey in the sacred lanes of <strong className="text-foreground">Vrindavan</strong>. Growing up in a family where morning 
+                  prayers were accompanied by harmonium and tabla, music became their language of worship from the very first breath.
                 </p>
                 <p>
-                  Their grandmother, a renowned kirtan singer of her time, planted the seeds of bhakti in their hearts. 
+                  Their grandmother, <strong className="text-foreground">Shrimati Kamla Devi</strong>, a renowned kirtan singer of her time, planted the seeds of bhakti in their hearts. 
                   By the age of 10, both brothers were performing at local temples, their young voices carrying the 
-                  ancient wisdom of Sanskrit shlokas with remarkable depth.
+                  ancient wisdom of Sanskrit shlokas with remarkable depth and devotion.
                 </p>
                 <p>
-                  Today, after over 15 years of dedicated practice and performance, Sachin-Jatin have become 
+                  After years of training under classical maestros and Hindustani vocalists, the duo developed their unique style — 
+                  a harmonious blend of <strong className="text-foreground">traditional ragas</strong> with contemporary arrangements that make ancient mantras 
+                  accessible to modern souls seeking spiritual solace.
+                </p>
+                <p>
+                  Today, after over <strong className="text-foreground">15 years</strong> of dedicated practice and performance, Sachin-Jatin have become 
                   synonymous with soulful devotional music that transcends religious boundaries and touches 
                   the spiritual core of every listener.
                 </p>
@@ -53,13 +59,15 @@ const About = () => {
             </div>
             
             <div className="relative animate-scale-in">
-              <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-saffron/20 to-gold/20 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <span className="text-8xl text-gold/40">🙏</span>
-                  <p className="mt-4 text-muted-foreground italic">Photo of Sachin-Jatin</p>
-                </div>
+              <div className="aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={aboutDuoImg} 
+                  alt="Sachin and Jatin - Devotional Music Duo"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-devotional rounded-full blur-3xl opacity-30" />
+              <div className="absolute -top-4 -left-4 w-24 h-24 bg-gold/20 rounded-full blur-2xl" />
             </div>
           </div>
         </div>
@@ -77,8 +85,12 @@ const About = () => {
             <blockquote className="text-xl md:text-2xl font-heading text-foreground italic leading-relaxed">
               "We believe that music is the purest form of prayer. Through our bhajans, we aim to create a 
               bridge between the earthly and the divine, helping souls find peace, purpose, and connection 
-              with the supreme consciousness."
+              with the supreme consciousness. Every note we sing is an offering to the divine, 
+              and every listener becomes part of our spiritual family."
             </blockquote>
+            <footer className="mt-6 text-muted-foreground">
+              — Sachin & Jatin
+            </footer>
             <div className="mt-6 flex justify-center">
               <div className="w-16 h-1 bg-gradient-devotional rounded-full" />
             </div>
@@ -124,15 +136,15 @@ const About = () => {
             {[
               {
                 title: "Authentic Tradition",
-                description: "Rooted in classical ragas and ancient mantras, our bhajans carry the authentic essence of Vedic traditions.",
+                description: "Rooted in classical ragas and ancient mantras, our bhajans carry the authentic essence of Vedic traditions passed down through generations of devoted musicians.",
               },
               {
                 title: "Heartfelt Devotion",
-                description: "Every note we sing comes from a place of deep bhakti, making our music resonate with spiritual seekers.",
+                description: "Every note we sing comes from a place of deep bhakti. Our music isn't performed — it flows naturally from hearts surrendered to the divine.",
               },
               {
                 title: "Universal Appeal",
-                description: "While honoring tradition, we create melodies that speak to modern souls seeking peace and purpose.",
+                description: "While honoring tradition, we create melodies that speak to modern souls seeking peace and purpose in today's fast-paced world.",
               },
             ].map((item, index) => (
               <div 

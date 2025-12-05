@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Play, Calendar, Mail } from "lucide-react";
+import heroImage from "@/assets/hero-sachin-jatin.jpg";
 
 interface HeroBannerProps {
   title?: string;
@@ -12,16 +13,23 @@ interface HeroBannerProps {
 const HeroBanner = ({
   title = "Sachin-Jatin",
   subtitle = "Spreading Divine Music Through Devotion",
-  description = "Experience the sacred power of bhajans that connect hearts and uplift souls. Join us on a spiritual journey through devotional music.",
+  description = "Experience the sacred power of bhajans that connect hearts and uplift souls. Join us on a spiritual journey through devotional music that has touched over 50,000 lives across India.",
   showCTA = true,
 }: HeroBannerProps) => {
   return (
-    <section className="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
-      {/* Mandala Background Pattern */}
-      <div className="absolute inset-0 mandala-pattern opacity-30" />
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src={heroImage} 
+          alt="Sachin-Jatin performing devotional music"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/80 to-background" />
+      </div>
       
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+      {/* Mandala Background Pattern */}
+      <div className="absolute inset-0 mandala-pattern opacity-20" />
       
       {/* Decorative Elements */}
       <div className="absolute top-20 left-10 w-32 h-32 rounded-full bg-saffron/10 blur-3xl animate-pulse" />
@@ -32,7 +40,7 @@ const HeroBanner = ({
       <div className="container relative z-10 text-center px-4 py-20">
         {/* Om Symbol */}
         <div className="mb-6 animate-fade-in">
-          <span className="text-6xl text-gold opacity-60">ॐ</span>
+          <span className="text-6xl text-gold opacity-80">ॐ</span>
         </div>
         
         <h1 className="font-heading text-5xl md:text-7xl lg:text-8xl font-bold mb-4 animate-fade-in-up">
@@ -43,7 +51,7 @@ const HeroBanner = ({
           {subtitle}
         </p>
         
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+        <p className="text-lg md:text-xl text-foreground/80 max-w-2xl mx-auto mb-10 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
           {description}
         </p>
         
@@ -56,14 +64,14 @@ const HeroBanner = ({
               </Link>
             </Button>
             
-            <Button asChild variant="outline" size="lg" className="border-gold/50 hover:bg-gold/10 hover:border-gold transition-all duration-300">
+            <Button asChild variant="outline" size="lg" className="border-gold/50 bg-background/50 backdrop-blur-sm hover:bg-gold/10 hover:border-gold transition-all duration-300">
               <Link to="/concerts" className="flex items-center gap-2">
                 <Calendar className="w-5 h-5" />
                 Concert History
               </Link>
             </Button>
             
-            <Button asChild variant="ghost" size="lg" className="hover:bg-maroon/10 hover:text-maroon transition-all duration-300">
+            <Button asChild variant="ghost" size="lg" className="bg-background/30 backdrop-blur-sm hover:bg-maroon/10 hover:text-maroon transition-all duration-300">
               <Link to="/contact" className="flex items-center gap-2">
                 <Mail className="w-5 h-5" />
                 Contact Us
