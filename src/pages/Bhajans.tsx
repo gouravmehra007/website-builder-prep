@@ -13,7 +13,7 @@ const Bhajans = () => {
 
   const filteredBhajans = activeCategory === "all" 
     ? bhajans 
-    : bhajans.filter(b => b.title.toLowerCase().includes(activeCategory));
+    : bhajans.filter(b => b.category === activeCategory);
 
   const handlePlayAll = () => {
     setPlaylist(bhajans, 0);

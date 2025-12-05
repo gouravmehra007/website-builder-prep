@@ -6,6 +6,7 @@ import BhajanCard from "@/components/BhajanCard";
 import { bhajans } from "@/data/bhajans";
 import { Button } from "@/components/ui/button";
 import { Play, Music, Mic, Users, ArrowRight } from "lucide-react";
+import productionStudioImg from "@/assets/production-studio.jpg";
 
 const Index = () => {
   // Featured bhajans (first 4)
@@ -23,7 +24,7 @@ const Index = () => {
         <div className="container relative z-10">
           <SectionHeading 
             title="Featured Bhajans"
-            subtitle="Listen to our most beloved devotional songs"
+            subtitle="Listen to our most beloved devotional songs that have touched thousands of hearts"
           />
           
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -59,25 +60,26 @@ const Index = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="animate-fade-in-up">
               <span className="inline-block px-4 py-1 bg-gold/10 text-gold rounded-full text-sm font-medium mb-4">
-                For Artists
+                For Artists & Singers
               </span>
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Music Production Services
+                Professional Music Production Services
               </h2>
               <p className="text-muted-foreground leading-relaxed mb-6">
-                Are you a singer looking to create your own devotional music? We offer professional 
-                music production services for bhajans, aartis, and spiritual albums. Our team brings 
-                decades of experience in creating soul-stirring devotional compositions.
+                Are you a singer looking to create your own devotional music? Sachin-Jatin offer professional 
+                music production services for bhajans, aartis, and spiritual albums. With over 15 years of experience 
+                and state-of-the-art recording facilities, we bring your devotional vision to life with authenticity and excellence.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
-                  "Professional studio recording",
-                  "Custom composition & arrangement",
-                  "Traditional & contemporary fusion",
-                  "Full album production",
+                  "Professional studio recording with premium equipment",
+                  "Custom composition & arrangement in classical ragas",
+                  "Traditional & contemporary fusion styles",
+                  "Full album production & mastering",
+                  "Guidance from experienced devotional musicians",
                 ].map((item, i) => (
                   <li key={i} className="flex items-center gap-3 text-foreground">
-                    <span className="w-2 h-2 rounded-full bg-gold" />
+                    <span className="w-2 h-2 rounded-full bg-gold flex-shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -91,11 +93,12 @@ const Index = () => {
             </div>
             
             <div className="relative animate-scale-in">
-              <div className="aspect-square rounded-2xl bg-gradient-to-br from-saffron/10 to-maroon/10 flex items-center justify-center">
-                <div className="text-center">
-                  <span className="text-8xl opacity-40">🎙️</span>
-                  <p className="mt-4 text-muted-foreground">Production Studio</p>
-                </div>
+              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={productionStudioImg} 
+                  alt="Sachin-Jatin Music Production Studio"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div className="absolute -top-4 -right-4 w-20 h-20 bg-gold/20 rounded-full blur-2xl" />
               <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-saffron/20 rounded-full blur-3xl" />
@@ -112,7 +115,7 @@ const Index = () => {
         <div className="container">
           <SectionHeading 
             title="Our Journey"
-            subtitle="Two souls united by devotion, spreading divine melodies"
+            subtitle="Two souls united by devotion, spreading divine melodies across India"
           />
           
           <div className="mt-10 grid md:grid-cols-3 gap-6">
@@ -120,21 +123,21 @@ const Index = () => {
               {
                 icon: Music,
                 title: "200+ Bhajans",
-                description: "A vast collection of devotional songs spanning various traditions and deities.",
+                description: "A vast collection of devotional songs spanning various traditions — from ancient Vedic hymns to soulful Krishna bhajans.",
                 link: "/bhajans",
                 linkText: "Listen Now",
               },
               {
                 icon: Users,
                 title: "500+ Concerts",
-                description: "Performed at temples, festivals, and spiritual gatherings across India.",
+                description: "Performed at sacred temples, spiritual festivals, and gatherings across India — from Vrindavan to Varanasi.",
                 link: "/concerts",
                 linkText: "View History",
               },
               {
                 icon: Play,
                 title: "15+ Years",
-                description: "Dedicated to the art of devotional music and spreading spiritual harmony.",
+                description: "Dedicated to the art of devotional music, spreading spiritual harmony and connecting hearts through sacred melodies.",
                 link: "/about",
                 linkText: "Our Story",
               },
@@ -171,8 +174,9 @@ const Index = () => {
               Connect With Us
             </h2>
             <p className="text-muted-foreground mb-8">
-              Whether you want to book us for a kirtan, collaborate on music production, 
-              or simply share your experience with our bhajans — we'd love to hear from you.
+              Whether you want to book us for a temple kirtan, collaborate on music production, 
+              or simply share your experience with our bhajans — we'd love to hear from you. 
+              Every message is a blessing to us.
             </p>
             <Button asChild size="lg" className="bg-gradient-devotional hover:shadow-glow transition-all">
               <Link to="/contact">Get in Touch</Link>
