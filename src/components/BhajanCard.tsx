@@ -1,7 +1,8 @@
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useAudioStore, Track } from "@/stores/audioStore";
+import { toast } from "sonner";
 
 interface BhajanCardProps {
   track: Track;
@@ -25,6 +26,25 @@ const BhajanCard = ({ track, className }: BhajanCardProps) => {
       } else {
         setTrack(track);
       }
+    }
+  };
+
+  const handleDownload = async (e: React.MouseEvent) => {
+    e.stopPropagation();
+    try {
+      const response = await fetch(track.file);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${track.title} - Sachin-Jatin.mp3`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url);
+      toast.success(`Downloading "${track.title}"`);
+    } catch (error) {
+      toast.error("Download failed. Please try again.");
     }
   };
   
@@ -87,6 +107,17 @@ const BhajanCard = ({ track, className }: BhajanCardProps) => {
             </span>
           </div>
         )}
+
+        {/* Download Button */}
+        <Button
+          onClick={handleDownload}
+          size="icon"
+          variant="ghost"
+          className="absolute top-3 right-3 w-9 h-9 bg-background/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity hover:bg-saffron hover:text-primary-foreground"
+          title="Download Bhajan"
+        >
+          <Download className="w-4 h-4" />
+        </Button>
       </div>
       
       {/* Content */}
